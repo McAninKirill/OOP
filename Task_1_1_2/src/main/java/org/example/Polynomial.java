@@ -4,22 +4,25 @@ import javax.swing.text.PlainDocument;
 import java.security.PrivateKey;
 
 import static java.lang.Math.pow;
-
+import static java.lang.Math.abs;
 public class Polynomial {
     private int size;
-    private int[] coeff;
+    private final int[] coeff;
     public int[] getCoeff() {
         return this.coeff.clone();
     }
 
-    public Polynomial(int[] inputCoeff) {
-        if (inputCoeff.length == 0) {
-            coeff = new int[]{0};
+
+
+
+    public Polynomial(int[] coeff_arr) {
+        var n = coeff_arr.length;
+        if (n == 0) {
+            this.coeff = new int[]{0};
+            this.size = 1;
         } else {
-            coeff = new int[inputCoeff.length];
-            for (int i = 0; i < inputCoeff.length; i++) {
-                coeff[i] = inputCoeff[i];
-            }
+            this.size = n;
+            this.coeff = coeff_arr;
         }
     }
 
@@ -29,27 +32,38 @@ public class Polynomial {
 
     public Polynomial plus(Polynomial polynomial){
         int[] polynomial2_coeff = polynomial.getCoeff();
-        int max_len = Math.max(this.size, polynomial.getSize());
+        int len_1 = this.size;
+        int len_2 = polynomial.getSize();
+        int max_len = Math.max(len_1, len_2);
         int[] res = new int[max_len];
 
         for(int i = 0; i < max_len; i ++){
-            if (i < this.size){
+            if (i < len_2){
                 res[i] += polynomial2_coeff[i];
             }
-            if(i < polynomial.getSize()){
+            if(i < len_1){
                 res[i] += coeff[i];
             }
         }
         return new Polynomial(res);
     }
 
-    public Polynomial minus(Polynomial polynomial) {
-        var negative_Coeff = polynomial.getCoeff();
-        for (int i = 0; i < negative_Coeff.length; i++) {
-            negative_Coeff[i] = -negative_Coeff[i];
-        }
+    public Polynomial minus(Polynomial polynomial){
+        int[] polynomial2_coeff = polynomial.getCoeff();
+        int len_1 = this.size;
+        int len_2 = polynomial.getSize();
+        int max_len = Math.max(len_1, len_2);
+        int[] res = new int[max_len];
 
-        return plus(new Polynomial(negative_Coeff));
+        for(int i = 0; i < max_len; i ++){
+            if (i < len_2){
+                res[i] -= polynomial2_coeff[i];
+            }
+            if(i < len_1){
+                res[i] += coeff[i];
+            }
+        }
+        return new Polynomial(res);
     }
 
 
@@ -80,18 +94,61 @@ public class Polynomial {
     }
 
     public Polynomial differentiate(int n){
-        int[] new_coeff = new int[coeff.length - n];
+        int new_len = coeff.length - n;
+        int[] new_coeff = new int[new_len];
 
         int fact_n = 1;
-        for(int i = 0; i < n; i++){
-            fact_n *= i;
-        }
 
-        for(int i = 0; i < (coeff.length - n); i++){
+        for(int i = 0; i < new_len; i++){
+            for(int k = i+1; k <= n+i; k++){
+                fact_n = fact_n * k;
+            }
             new_coeff[i] = coeff[i + n] * fact_n;
-            fact_n *= i;
+            fact_n = 1;
         }
         return new Polynomial(new_coeff);
     }
 
+    @Override
+    public String toString() {
+        var ans = new StringBuilder();
+
+        boolean is_it_first = true;
+        for (int i = this.size - 1; i >= 0; i--) {
+            if (this.coeff[i] != 0) {
+                if (is_it_first == false) {
+                    if (this.coeff[i] < 0) {
+                        ans.append(" - ");
+                    } else {
+                        ans.append(" + ");
+                    }
+                } else {
+                    if (this.coeff[i] < 0) {
+                        ans.append("- ");
+                    }
+                    is_it_first = false;
+                }
+                if (i > 1) {
+                    ans.append(abs(this.coeff[i])).append("x^").append(i);
+                } else if (i == 1) {
+                    ans.append(abs(this.coeff[i])).append("x");
+                } else  {
+                    ans.append(abs(this.coeff[i]));
+                }
+            }
+        }
+        return ans.toString();
+    }
+
+    public Polynomial times(Polynomial polynomial) {
+        int[] coef = polynomial.getCoeff();
+        int[] new_Coef = new int[coeff.length + coef.length];
+
+        for (int i = 0; i < coef.length; i++) {
+            for (int j = 0; j < coeff.length; j++) {
+                new_Coef[i + j] += coeff[j] * coef[i];
+            }
+        }
+        return new Polynomial(new_Coef);
+    }
 }
