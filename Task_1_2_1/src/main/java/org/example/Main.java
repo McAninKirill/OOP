@@ -10,7 +10,11 @@ public class Main {
         Tree<String> subtree = new Tree<>("R2");
         subtree.addChild("C");
         subtree.addChild("D");
-        tree.addChild(subtree);
+        try {
+            tree.addChild(subtree);
+        } catch (NullException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
         b.removeSubtree();
         BfsIterator<String> bfs = new BfsIterator<String>(tree);
         while (bfs.hasNext()) {

@@ -4,6 +4,8 @@ package org.example;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.Stack;
+import java.util.NoSuchElementException;
+
 public class DfsIterator<T> implements Iterator<T>{
     private Tree<T> tree;
     private Stack<Tree<T>> stack;
@@ -26,12 +28,13 @@ public class DfsIterator<T> implements Iterator<T>{
     }
 
 
+
     public T next(){
         if(hasNext()){
             Tree<T> next = this.stack.pop();
             this.stack.addAll(next.getChildren());
             return next.getData();
         }
-        return null;
+        throw new NoSuchElementException();
     }
 }

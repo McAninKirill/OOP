@@ -1,7 +1,8 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class Tree<T> implements Iterable<T>{
     private T data;
@@ -37,7 +38,10 @@ public class Tree<T> implements Iterable<T>{
         }
     }
 
-    public Tree<T> addChild(Tree<T> subtree){
+    public Tree<T> addChild(Tree<T> subtree) throws NullException{
+        if (subtree == null) {
+            throw new NullException("Can't add null subtree");
+        }
         this.children.add(subtree);
         int cnt = subtree.getAmount();
         for(int i = 0; i < cnt; i++){
@@ -87,25 +91,44 @@ public class Tree<T> implements Iterable<T>{
         }
     }
 
-    public boolean equals(Tree<T> tree) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        var tree = (Tree<?>) obj;
+
+        if (this.amount != (tree.amount)) {
+            return false;
+        }
+
+        boolean result = true;
+
         ArrayList<T> list1 = new ArrayList<>();
         ArrayList<T> list2 = new ArrayList<>();
 
         var dfs1 = this.DfsIterator();
         var dfs2 = tree.DfsIterator();
 
-        while(dfs1.hasNext()){
-            list1.add(dfs1.next());
+        while (dfs1.hasNext() && dfs2.hasNext()) {
+            if (!dfs1.next().equals(dfs2.next())) {
+                return false;
+            }
         }
-        while(dfs2.hasNext()){
-            list2.add(dfs2.next());
+        if (dfs1.hasNext() != dfs2.hasNext()) {
+            result = false;
         }
-
-        return (list1.equals(list2));
+        return result;
     }
 
     @Override
     public Iterator<T> iterator() {
         return new BfsIterator<>(this);
+    }
+
+    public Stream<T> treeStream() {
+        var mySpliterator = Spliterators.spliterator(this.iterator(), this.amount,
+                Spliterator.IMMUTABLE | Spliterator.SIZED | Spliterator.DISTINCT
+        );
+        return StreamSupport.stream(mySpliterator, false);
     }
 }

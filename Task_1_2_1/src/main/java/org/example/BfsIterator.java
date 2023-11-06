@@ -4,6 +4,7 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.NoSuchElementException;
 public class BfsIterator<T> implements Iterator<T>{
     private Tree<T> tree;
     private Queue<Tree<T>> queue;
@@ -30,6 +31,6 @@ public class BfsIterator<T> implements Iterator<T>{
             this.queue.addAll(next.getChildren());
             return next.getData();
         }
-        return null;
+        throw new NoSuchElementException();
     }
 }
