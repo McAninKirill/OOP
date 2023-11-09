@@ -5,10 +5,10 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Tree<T> implements Iterable<T>{
-    private T data;
+    private final T data;
     private int amount;
-    private Tree<T> parent;
-    private ArrayList <Tree<T>> children;
+    private final Tree<T> parent;
+    private final ArrayList <Tree<T>> children;
     public Tree(T data){
         this.data = data;
         this.amount = 1;
@@ -91,6 +91,7 @@ public class Tree<T> implements Iterable<T>{
         }
     }
 
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

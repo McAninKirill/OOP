@@ -16,9 +16,6 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
         b.removeSubtree();
-        BfsIterator<String> bfs = new BfsIterator<String>(tree);
-        while (bfs.hasNext()) {
-            System.out.println(bfs.next());
-        }
+        tree.treeStream().forEach(System.out::println);
     }
 }
