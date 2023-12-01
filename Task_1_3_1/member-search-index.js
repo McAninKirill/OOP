@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"org.example","c":"FindSubstr","l":"bufferSize"},{"p":"org.example","c":"FindSubstr","l":"FindSubstr()","url":"%3Cinit%3E()"},{"p":"org.example","c":"FindSubstr","l":"findSubstr(String, String)","url":"findSubstr(java.lang.String,java.lang.String)"}]
