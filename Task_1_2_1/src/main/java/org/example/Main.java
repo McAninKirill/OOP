@@ -11,7 +11,7 @@ public class Main {
         subtree.addChild("C");
         subtree.addChild("D");
         try {
-            tree.addChild(subtree);
+            tree.addSubtree(subtree);
         } catch (NullException e) {
             System.out.println("Error: " + e.getMessage());
         }

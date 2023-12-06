@@ -4,6 +4,21 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TreeTest {
+
+    @Test
+    public void toStringTest() throws NullException{
+        Tree<Integer> tree = new Tree<>(1);
+        Tree<Integer> subtree1 = new Tree<>(2);
+        Tree<Integer> subtree2 = new Tree<>(7);
+
+        subtree1.addChild(4);
+        subtree2.addChild(8);
+        subtree1.addSubtree(subtree2);
+
+        tree.addSubtree(subtree1);
+        tree.addChild(6);
+        assertEquals(tree.toString(), "1: 2: [4: , 7: 8: [], ], 6: [], ");
+    }
     @Test
     public void removeSubtreeTest(){
         Tree<Integer> tree = new Tree<>(1);
@@ -35,7 +50,7 @@ public class TreeTest {
         subtree1.addChild(5);
         tree.addChild(6);
 
-        subtree1.remove();
+        subtree1.removeElem();
 
         StringBuilder res = new StringBuilder();
         var dfs = tree.DfsIterator();

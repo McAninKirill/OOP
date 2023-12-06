@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Tree<T> implements Iterable<T>{
-    private final T data;
+    private T data;
     private int amount;
     private final Tree<T> parent;
     private final ArrayList <Tree<T>> children;
@@ -26,19 +26,13 @@ public class Tree<T> implements Iterable<T>{
 
     private void increaseAmount(){
         this.amount ++;
-        if(this.parent != null){
-            this.parent.increaseAmount();
-        }
     }
 
     private void decreaseAmount(){
         this.amount--;
-        if(this.parent != null){
-            this.parent.decreaseAmount();
-        }
     }
 
-    public Tree<T> addChild(Tree<T> subtree) throws NullException{
+    public Tree<T> addSubtree(Tree<T> subtree) throws NullException{
         if (subtree == null) {
             throw new NullException("Can't add null subtree");
         }
@@ -83,10 +77,13 @@ public class Tree<T> implements Iterable<T>{
         }
     }
 
-    public void remove(){
+    public void removeElem(){
         if(this.parent != null){
-            this.parent.children.addAll(this.children);
-            this.parent.children.remove(this);
+            int len = this.children.size();
+            for(int i = 0; i < len; i++) {
+                this.parent.children.add(this.children.get(0));
+                this.children.remove(0);
+            }
             this.parent.decreaseAmount();
         }
     }
@@ -119,6 +116,25 @@ public class Tree<T> implements Iterable<T>{
             result = false;
         }
         return result;
+    }
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        if (this.children != null) {
+            str.append(this.data + ": ");
+            for (Tree<T> child : this.children) {
+                if (child.children != null) {
+                    str.append(child.data + ": ");
+                    str.append(child.children + ", ");
+                } else {
+                    str.append(child.data + ", ");
+                }
+            }
+            str.append("");
+        } else{
+            str.append(this.data);
+        }
+        return str.toString();
     }
 
     @Override
