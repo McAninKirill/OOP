@@ -1,8 +1,4 @@
 package org.example;
-
-import javax.swing.text.PlainDocument;
-import java.security.PrivateKey;
-
 import static java.lang.Math.pow;
 import static java.lang.Math.abs;
 public class Polynomial {

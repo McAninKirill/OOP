@@ -45,7 +45,7 @@ public class PolynomialTest {
     @Test
     public void differentiate_Test(){
         Polynomial polynomial = new Polynomial(new int[]{5,4,3,2,1});
-        Polynomial polynomial_dif = new Polynomial(new int[]{6,12,24});
+        Polynomial polynomial_dif = new Polynomial(new int[]{6,12,12});
         assertEquals(polynomial.differentiate(2).toString(), polynomial_dif.toString());
     }
 
