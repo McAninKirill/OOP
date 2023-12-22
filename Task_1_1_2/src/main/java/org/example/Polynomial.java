@@ -2,7 +2,7 @@ package org.example;
 import static java.lang.Math.pow;
 import static java.lang.Math.abs;
 public class Polynomial {
-    private int size;
+    private final int size;
     private final int[] coeff;
     public int[] getCoeff() {
         return this.coeff.clone();
@@ -71,8 +71,14 @@ public class Polynomial {
         return ans;
     }
 
-    public boolean equals(Polynomial polynomial) {
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+
         boolean res = true;
+        var polynomial = (Polynomial) obj;
         int len_1 = polynomial.getSize();
         int[] p_coeff = polynomial.getCoeff();
 
@@ -91,6 +97,11 @@ public class Polynomial {
 
     public Polynomial differentiate(int n){
         int new_len = coeff.length - n;
+
+        if(new_len < 1){
+            return new Polynomial(new int[]{0});
+        }
+
         int[] new_coeff = new int[new_len];
 
         int fact_n = 1;
@@ -109,10 +120,11 @@ public class Polynomial {
     public String toString() {
         var ans = new StringBuilder();
 
-        boolean is_it_first = true;
+        boolean is_it_first = true, empty = true;
         for (int i = this.size - 1; i >= 0; i--) {
             if (this.coeff[i] != 0) {
-                if (is_it_first == false) {
+                empty = false;
+                if (!is_it_first) {
                     if (this.coeff[i] < 0) {
                         ans.append(" - ");
                     } else {
@@ -132,6 +144,10 @@ public class Polynomial {
                     ans.append(abs(this.coeff[i]));
                 }
             }
+        }
+
+        if(empty){
+            ans.append("0");
         }
         return ans.toString();
     }

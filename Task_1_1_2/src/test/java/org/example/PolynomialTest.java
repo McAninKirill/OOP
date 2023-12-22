@@ -50,6 +50,13 @@ public class PolynomialTest {
     }
 
     @Test
+    public void differentiate_Test2(){
+        Polynomial polynomial = new Polynomial(new int[]{5,4,3,2,1});
+        Polynomial polynomial_dif = new Polynomial(new int[]{0});
+        assertEquals(polynomial.differentiate(10).toString(), polynomial_dif.toString());
+    }
+
+    @Test
     public void times_Test(){
         Polynomial p1 = new Polynomial(new int[]{1,2,3});
         Polynomial p2 = new Polynomial(new int[]{1,2,3,4});

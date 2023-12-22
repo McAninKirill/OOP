@@ -2,8 +2,9 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        Polynomial p2 = new Polynomial(new int[]{1,2,3,4,5});
-        System.out.println("Polynom p1: " + p2.toString());
-        System.out.println("Dif: " + p2.differentiate(2).toString());
+        Polynomial p1 = new Polynomial(new int[] {4, 3, 6, 7});
+        Polynomial p2 = new Polynomial(new int[] {3, 2, 8});
+        System.out.println(p1.plus(p2.differentiate(1)).toString());
+        System.out.println(p1.times(p2).evaluate(2));
     }
 }
