@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.PolynomialTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-12-22T06:34:45" hostname="DRMAKANIN" time="0.058">
+  <properties/>
+  <testcase name="minus_Test()" classname="org.example.PolynomialTest" time="0.058"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
