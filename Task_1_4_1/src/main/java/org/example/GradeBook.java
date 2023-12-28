@@ -7,7 +7,6 @@ public class GradeBook {
     private final String group;
 
     private ArrayList<String> namesOfAllSubjects = new ArrayList<>();
-    private Integer amountOfThreeAndTwo;
     private Integer qualificationWork;
     private Integer lastSemester;
     public ArrayList<Semester> semesters = new ArrayList<>();
@@ -15,7 +14,6 @@ public class GradeBook {
     public GradeBook(String fullName, String group){
         this.fullName = fullName;
         this.group = group;
-        amountOfThreeAndTwo = 0;
         lastSemester = 0;
         semesters = new ArrayList<>();
     }
@@ -59,10 +57,6 @@ public class GradeBook {
             throw new Exception("Number of semester must be between 1 and 8.");
         }
 
-        if(grade < 4){
-            amountOfThreeAndTwo += 1;
-        }
-
         if(namesOfAllSubjects.stream().noneMatch(sub -> subjectName.equals(sub))){
             namesOfAllSubjects.add(subjectName);
             /*
@@ -86,9 +80,6 @@ public class GradeBook {
     }
 
     public boolean RedDiplom() throws Exception{
-        if(amountOfThreeAndTwo > 0){
-            return false;
-        }
 
         if(this.qualificationWork == null){
             throw new Exception("You forgot to add a grave of qualification work");
@@ -98,26 +89,28 @@ public class GradeBook {
             throw new Exception("You forgot to add some semesters");
         }
 
-        double aver = 0.0;
-        int sum, amount, count = 0, all_grades = 0;
+        double aver;
+        int lastGrade = 0, amountOfSubjects = 0, all_grades = 0, temp;
         for (String sub: namesOfAllSubjects){
-            amount = 0;
-            sum = 0;
             for(int i = 0; i < 8; i++) {
-                amount += (int)
-                        semesters.get(i).grades.stream().
-                                filter(x -> sub.equals(x.getSubjectName())).count();
-                sum += (int) semesters.get(i).grades.stream().
+                temp = (int) semesters.get(i).grades.stream().
                         filter(x -> sub.equals(x.getSubjectName())).
                         mapToInt(Subject::getGrade).average().orElse(0.0);
+                if(temp != 0){
+                    lastGrade = temp;
+                }
+                if(lastGrade < 4){
+                    return false;
+                }
+
             }
 
-            all_grades += (int)((double)sum/amount + 0.5);
-            count += 1;
+            all_grades += lastGrade;
+            amountOfSubjects += 1;
 
         }
 
-        aver = (double) all_grades / count;
+        aver = (double) all_grades / amountOfSubjects;
 
         return aver >= 4.75 && this.qualificationWork == 5;
     }

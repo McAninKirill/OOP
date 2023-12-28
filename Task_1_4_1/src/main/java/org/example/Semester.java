@@ -2,17 +2,17 @@ package org.example;
 import java.util.*;
 public class Semester {
     private Integer numberOfSemester;
-    private Integer amountOfThreeAndTwo;
+    private Integer amountOfBadGrades;
     public ArrayList<Subject> grades = new ArrayList<>();
 
     public Semester(Integer numberOfSemester){
         this.numberOfSemester = numberOfSemester;
-        amountOfThreeAndTwo = 0;
+        amountOfBadGrades = 0;
     }
 
     public void AddGrade(Integer grade, String subjectname){
-        if (grade < 4) {
-            amountOfThreeAndTwo += 1;
+        if (grade < 5) {
+            amountOfBadGrades += 1;
         }
         if(grades.stream().
                 filter(sub -> subjectname.equals(sub.getSubjectName())).count() == 1){
@@ -29,6 +29,6 @@ public class Semester {
     }
 
 
-    public Integer getBadGrades(){return amountOfThreeAndTwo;}
+    public Integer getBadGrades(){return amountOfBadGrades;}
 
 }

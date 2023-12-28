@@ -69,7 +69,7 @@ public class GradeBookTest {
             gradeBook.AddGrade(i, 5, "4");
         }
 
-        gradeBook.AddGrade(8, 5, "5");
+        gradeBook.AddGrade(8, 4, "5");
         gradeBook.AddGrade(8, 5, "6");
         gradeBook.AddGrade(8, 4, "7");
         gradeBook.AddGrade(8, 4, "8");
