@@ -38,11 +38,11 @@ public class GradeBookTest {
             gradeBook.AddGrade(i, 4, "1");
             gradeBook.AddGrade(i, 5, "2");
             gradeBook.AddGrade(i, 3, "3");
-            gradeBook.AddGrade(i, 4, "4");
+            gradeBook.AddGrade(i, 5, "4");
         }
         gradeBook.AddGrade(6, 5, "1");
         gradeBook.AddGrade(6, 5, "2");
-        gradeBook.AddGrade(6, 4, "3");
+        gradeBook.AddGrade(6, 5, "3");
         assertEquals(true, gradeBook.Grant());
     }
 

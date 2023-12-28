@@ -90,7 +90,7 @@ public class GradeBook {
         }
 
         double aver;
-        int lastGrade = 0, amountOfSubjects = 0, all_grades = 0, temp;
+        int lastGrade = 10, amountOfSubjects = 0, all_grades = 0, temp;
         for (String sub: namesOfAllSubjects){
             for(int i = 0; i < 8; i++) {
                 temp = (int) semesters.get(i).grades.stream().
