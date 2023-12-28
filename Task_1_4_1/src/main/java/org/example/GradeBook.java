@@ -27,7 +27,7 @@ public class GradeBook {
 
     public Double AverageGrave(){
 
-        Integer amount = 0, sum = 0;
+        int amount = 0, sum = 0;
 
         for (String sub: namesOfAllSubjects){
 
@@ -112,7 +112,7 @@ public class GradeBook {
                         mapToInt(Subject::getGrade).average().orElse(0.0);
             }
 
-            all_grades += sum/amount;
+            all_grades += (int)((double)sum/amount + 0.5);
             count += 1;
 
         }
