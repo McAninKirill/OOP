@@ -94,8 +94,12 @@ public class GradeBook {
             throw new Exception("You forgot to add a grave of qualification work");
         }
 
+        if(this.lastSemester != 8){
+            throw new Exception("You forgot to add some semesters");
+        }
+
         double aver = 0.0;
-        int sum, amount, count = 0;
+        int sum, amount, count = 0, all_grades = 0;
         for (String sub: namesOfAllSubjects){
             amount = 0;
             sum = 0;
@@ -107,12 +111,13 @@ public class GradeBook {
                         filter(x -> sub.equals(x.getSubjectName())).
                         mapToInt(Subject::getGrade).average().orElse(0.0);
             }
-            aver += (double) sum/amount;
+
+            all_grades += sum/amount;
             count += 1;
 
         }
 
-        aver = aver / count;
+        aver = (double) all_grades / count;
 
         return aver >= 4.75 && this.qualificationWork == 5;
     }
