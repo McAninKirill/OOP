@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.example.FindSubstrTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2023-12-01T16:30:04" hostname="DRMAKANIN" time="0.126">
+  <properties/>
+  <testcase name="nullTest()" classname="org.example.FindSubstrTest" time="0.096"/>
+  <testcase name="basicTest()" classname="org.example.FindSubstrTest" time="0.006"/>
+  <testcase name="bigTest()" classname="org.example.FindSubstrTest" time="0.005"/>
+  <testcase name="rusTest()" classname="org.example.FindSubstrTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
