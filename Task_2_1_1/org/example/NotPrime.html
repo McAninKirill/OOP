@@ -132,6 +132,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">NotPrime</span>
 extends java.lang.Object</pre>
+<div class="block">В одном классе будут три способа</div>
 </li>
 </ul>
 </div>
@@ -175,19 +176,25 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Consistently(int%5B%5D)">Consistently</a></span>&#8203;(int[]&nbsp;array)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#consistently(int%5B%5D)">consistently</a></span>&#8203;(int[]&nbsp;array)</code></th>
+<td class="colLast">
+<div class="block">Метод для последовательного способа</div>
+</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>static boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ParallelStream(int%5B%5D)">ParallelStream</a></span>&#8203;(int[]&nbsp;array)</code></th>
-<td class="colLast">&nbsp;</td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#parallelStream(int%5B%5D)">parallelStream</a></span>&#8203;(int[]&nbsp;array)</code></th>
+<td class="colLast">
+<div class="block">Метод для параллельного способа с применением Stream</div>
+</td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>static boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ParallelThread(int%5B%5D,int)">ParallelThread</a></span>&#8203;(int[]&nbsp;array,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#parallelThread(int%5B%5D,int)">parallelThread</a></span>&#8203;(int[]&nbsp;array,
               int&nbsp;numThreads)</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Метод для параллельного способа с применением Threads</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -232,44 +239,60 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="Consistently(int[])">
+<a id="consistently(int[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>Consistently</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;Consistently&#8203;(int[]&nbsp;array)
+<h4>consistently</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;consistently&#8203;(int[]&nbsp;array)
                             throws java.lang.Exception</pre>
+<div class="block">Метод для последовательного способа</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>array</code> - - список, который нам надо проверить</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- true or false</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
 </dl>
 </li>
 </ul>
-<a id="ParallelThread(int[],int)">
+<a id="parallelThread(int[],int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>ParallelThread</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;ParallelThread&#8203;(int[]&nbsp;array,
+<h4>parallelThread</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;parallelThread&#8203;(int[]&nbsp;array,
                                      int&nbsp;numThreads)
                               throws java.lang.Exception</pre>
+<div class="block">Метод для параллельного способа с применением Threads</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>array</code> - - список, который нам надо проверить</dd>
+<dd><code>numThreads</code> - - число потоков</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- true or false</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
 </dl>
 </li>
 </ul>
-<a id="ParallelStream(int[])">
+<a id="parallelStream(int[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>ParallelStream</h4>
-<pre class="methodSignature">public static&nbsp;boolean&nbsp;ParallelStream&#8203;(int[]&nbsp;array)
+<h4>parallelStream</h4>
+<pre class="methodSignature">public static&nbsp;boolean&nbsp;parallelStream&#8203;(int[]&nbsp;array)
                               throws java.lang.Exception</pre>
+<div class="block">Метод для параллельного способа с применением Stream</div>
 <dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>array</code> - - список, который нам надо проверить</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true or else</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.lang.Exception</code></dd>
 </dl>
