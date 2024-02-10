@@ -1,46 +1,49 @@
 package org.example;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Test;
-import java.time.Duration;
 import java.util.Arrays;
+import java.time.Duration;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.example.NotPrime.*;
+import org.junit.jupiter.api.Test;
 
-/*
+import static org.example.NotPrime.consistently;
+import static org.example.NotPrime.parallelThread;
+import static org.example.NotPrime.parallelStream;
+
+/**
  * Тесты
  */
 public class NonPrimeTest {
 
-    /*
+    /**
      * Простой тест для проверки работоспособности последовательного способа
      */
     @Test
     void simpleCons() throws Exception {
         int[] arr = {17, 13, 1, 5, 7};
-        assertEquals(true, Consistently(arr));
+        assertEquals(true, consistently(arr));
     }
 
-    /*
+    /**
      * Простой тест для проверки работоспособности параллельного способа с Threads
      */
     @Test
     void simpleThr() throws Exception {
         int[] arr = {17, 13, 1, 7, 5};
-        assertEquals(true, ParallelThread(arr, 2));
+        assertEquals(true, parallelThread(arr, 2));
     }
 
-    /*
+    /**
      * Простой тест для проверки работоспособности параллельного способа с Stream
      */
     @Test
     void simpleStr() throws Exception {
         int[] arr = {17, 13, 1, 7, 5};
-        assertEquals(true, ParallelStream(arr));
+        assertEquals(true, parallelStream(arr));
     }
 
 
-    /*
+    /**
      * Большой тест для проверки скорости последовательного способа
      */
     @Test
@@ -48,7 +51,7 @@ public class NonPrimeTest {
         int[] arr = new int[10000000];
         Arrays.fill(arr, 99971);
         long start = System.nanoTime();
-        boolean ans = Consistently(arr);
+        boolean ans = consistently(arr);
         long end = System.nanoTime();
 
         assertEquals(false, ans);
@@ -56,7 +59,7 @@ public class NonPrimeTest {
         System.out.println("Consistently: " + Duration.ofNanos(end - start).toMillis() + " ms");
     }
 
-    /*
+    /**
      * Большой тест для проверки скорости параллельного способа с Threads
      */
     @Test
@@ -64,7 +67,7 @@ public class NonPrimeTest {
         int[] arr = new int[10000000];
         Arrays.fill(arr, 99971);
         long start = System.nanoTime();
-        boolean ans = ParallelThread(arr, 4);
+        boolean ans = parallelThread(arr, 4);
         long end = System.nanoTime();
 
         assertEquals(false, ans);
@@ -72,7 +75,7 @@ public class NonPrimeTest {
         System.out.println("Threads: " + Duration.ofNanos(end - start).toMillis() + " ms");
     }
 
-    /*
+    /**
      * Большой тест для проверки скорости параллельного способа с Stream
      */
     @Test
@@ -80,7 +83,7 @@ public class NonPrimeTest {
         int[] arr = new int[10000000];
         Arrays.fill(arr, 99971);
         long start = System.nanoTime();
-        boolean ans = ParallelStream(arr);
+        boolean ans = parallelStream(arr);
         long end = System.nanoTime();
 
         assertEquals(false, ans);
