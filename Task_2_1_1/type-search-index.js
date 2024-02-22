@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.example","l":"Main"},{"p":"org.example","l":"NotPrime"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.example.hasnotprimecheck","l":"ConsistentlyPrime"},{"p":"org.example.hasnotprimecheck","l":"StreamPrime"},{"p":"org.example.hasnotprimecheck","l":"ThreadPrime"}]
