@@ -1,6 +1,5 @@
 package org.example.pizza;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -65,13 +64,13 @@ public class Pizzeria {
     public static void main(String[] args) throws InterruptedException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         try (InputStream fileInputStream = ClassLoader.getSystemResourceAsStream("pizzeria.json")) {
-            Pizzeria pizzeriaJson = objectMapper.readValue(fileInputStream, Pizzeria.class);
-            int nBakers = pizzeriaJson.nBakers;
-            int mCouriers = pizzeriaJson.mCouriers;
-            int timeOfWork = pizzeriaJson.timeOfWork;
-            int warehouseCapacity = pizzeriaJson.warehouseCapacity;
-            int[] bakerSpeeds = pizzeriaJson.bakerSpeeds;
-            int[] courierSpeed = pizzeriaJson.courierSpeed;
+            PizzeriaJson pizzeriaJson = objectMapper.readValue(fileInputStream, PizzeriaJson.class);
+            int nBakers = pizzeriaJson.nBakers();
+            int mCouriers = pizzeriaJson.mCouriers();
+            int timeOfWork = pizzeriaJson.timeOfWork();
+            int warehouseCapacity = pizzeriaJson.warehouseCapacity();
+            int[] bakerSpeeds = pizzeriaJson.bakerSpeeds();
+            int[] courierSpeed = pizzeriaJson.courierSpeed();
             Pizzeria pizzeria = new Pizzeria(nBakers, mCouriers, warehouseCapacity, bakerSpeeds, courierSpeed, timeOfWork);
             pizzeria.start();
         }
