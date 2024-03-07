@@ -1,0 +1,14 @@
+{
+  "nBakers" : 2,
+  "mCouriers" : 2,
+  "timeOfWork" : 120000,
+  "warehouseCapacity" : 4,
+  "bakerSpeeds": [
+    10,
+    15
+  ],
+  "courierSpeed": [
+    15,
+    20
+  ]
+}
