@@ -18,7 +18,7 @@ public class StreamPrime extends NotPrime{
      * @return true or else
      */
     public boolean hasPrime(int[] array) {
-        try(ForkJoinPool threadPool = new ForkJoinPool(this.numThreads);) {
+        try(ForkJoinPool threadPool = new ForkJoinPool(this.numThreads)) {
             return threadPool.submit(() ->
                     Arrays.stream(array)
                             .parallel()
