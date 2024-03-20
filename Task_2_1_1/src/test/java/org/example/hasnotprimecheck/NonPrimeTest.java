@@ -1,13 +1,7 @@
 package org.example.hasnotprimecheck;
 
-import java.time.Duration;
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
-import static org.example.hasnotprimecheck.ConsistentlyPrime.consistently;
-import static org.example.hasnotprimecheck.ThreadPrime.parallelThread;
-import static org.example.hasnotprimecheck.StreamPrime.parallelStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -19,18 +13,20 @@ public class NonPrimeTest {
      * Простой тест для проверки работоспособности последовательного способа.
      */
     @Test
-    void simpleCons() throws Exception {
+    void simpleCons(){
         int[] arr = {17, 13, 4, 5, 7};
-        assertTrue(consistently(arr));
+        ConsistentlyPrime cons = new ConsistentlyPrime();
+        assertTrue(cons.hasPrime(arr));
     }
 
     /**
      * Простой тест для проверки работоспособности параллельного способа с Threads.
      */
     @Test
-    void simpleThr() throws Exception {
+    void simpleThr(){
         int[] arr = {17, 13, 4, 7, 5};
-        assertTrue(parallelThread(arr, 2));
+        ThreadPrime thr = new ThreadPrime(2);
+        assertTrue(thr.hasPrime(arr));
     }
 
     /**
@@ -39,7 +35,8 @@ public class NonPrimeTest {
     @Test
     void simpleStr() {
         int[] arr = {17, 13, 4, 7, 5};
-        assertTrue(parallelStream(arr));
+        StreamPrime str = new StreamPrime(2);
+        assertTrue(str.hasPrime(arr));
     }
 
     /**
@@ -48,7 +45,8 @@ public class NonPrimeTest {
     @Test
     void oneCons()  {
         int[] arr = {17, 13, 1, 5, 7};
-        assertTrue(consistently(arr));
+        ConsistentlyPrime cons = new ConsistentlyPrime();
+        assertTrue(cons.hasPrime(arr));
     }
 
     /**
@@ -57,7 +55,8 @@ public class NonPrimeTest {
     @Test
     void oneThr(){
         int[] arr = {17, 13, 1, 7, 5};
-        assertTrue(parallelThread(arr, 2));
+        ThreadPrime thr = new ThreadPrime(2);
+        assertTrue(thr.hasPrime(arr));
     }
 
     /**
@@ -66,7 +65,8 @@ public class NonPrimeTest {
     @Test
     void oneStr() throws Exception {
         int[] arr = {17, 13, 1, 7, 5};
-        assertTrue(parallelStream(arr));
+        StreamPrime str = new StreamPrime(2);
+        assertTrue(str.hasPrime(arr));
     }
 
 }

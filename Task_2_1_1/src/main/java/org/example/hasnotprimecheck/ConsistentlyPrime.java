@@ -1,5 +1,7 @@
 package org.example.hasnotprimecheck;
 
+import java.util.Arrays;
+
 public class ConsistentlyPrime extends NotPrime {
     /**
      * Метод для последовательного способа
@@ -7,13 +9,8 @@ public class ConsistentlyPrime extends NotPrime {
      * @param array - список, который нам надо проверить
      * @return - true or false
      */
-    public static boolean consistently(int[] array){
-        for (int number:
-                array){
-            if (!isPrime(number)) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public boolean hasPrime(int[] array){
+        return Arrays.stream(array).anyMatch(num -> !isPrime(num));
     }
 }

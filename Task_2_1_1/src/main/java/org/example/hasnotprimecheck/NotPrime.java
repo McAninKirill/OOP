@@ -26,4 +26,6 @@ abstract class NotPrime{
         }
         return true;
     }
+
+    public abstract boolean hasPrime(int[] arr);
 }
