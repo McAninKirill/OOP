@@ -22,9 +22,9 @@ public class Courier extends Thread {
                 List<Pizza> pizzas = new ArrayList<>();
                 while (!warehouse.isEmpty()) {
                     pizzas.add(warehouse.take());
-                    System.out.println("Courier " + courierId + " took pizza " + pizzas.get(0).orderNumber());
+                    System.out.println("Courier " + courierId + " took pizza " + pizzas.get(0).getOrderNumber());
                     TimeUnit.SECONDS.sleep(speed);
-                    System.out.println("Courier " + courierId + " delivered pizza " + pizzas.get(0).orderNumber());
+                    System.out.println("Courier " + courierId + " delivered pizza " + pizzas.get(0).getOrderNumber());
                     pizzas.remove(0);
                 }
             }
